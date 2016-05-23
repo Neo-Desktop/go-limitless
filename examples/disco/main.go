@@ -1,18 +1,21 @@
 package main
 
 import (
-	"github.com/lucasb-eyer/go-colorful"
 	"github.com/nesurion/go-limitless"
+	"time"
 )
 
 func main() {
 	c := limitless.LimitlessController{}
-	c.Host = "192.168.1.138"
+	c.Host = "192.168.2.141"
 	group := limitless.LimitlessGroup{}
 	group.Id = 1
 	group.Controller = &c
 	c.Groups = []limitless.LimitlessGroup{group}
 
-	color := colorful.Hsv(320.0, 1.0, 1.0)
-	group.SendColor(color)
+	group.Disco()
+	time.Sleep(1000 * time.Millisecond)
+	group.DiscoSlower()
+	time.Sleep(1000 * time.Millisecond)
+	group.DiscoFaster()
 }
